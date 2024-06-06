@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>button test</title>
+<script src="https://api.github.com/GLogin/AnandPandey455/"></script>
+</head>
+<body>
+<h1>button to add file</h1>
+<input type="text" id="name" placeholder="name">
+<input type="text" id="info" placeholder="info">
+
+<button id="submit" onclick="">createfile()</button>
+
+<script>
+  function createFile() {
+  const username = 'AnandPandey455';
+  const repo = 'GLogin';
+  const path = '/';
+  const filename = 'new.txt';
+  const content = `Name: ${document.getElementById('name').value}\nInfo: ${document.getElementById('info').value}`;
+
+  const headers = {
+    'Authorization': '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',
+    'Content-Type': 'application/json'
+  };
+
+  const data = {
+    'essage': 'Create new file',
+    'content': btoa(content),
+    'branch': 'ain'
+  };
+
+  fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}${filename}`, {
+    method: 'PUT',
+    headers: headers,
+    body: JSON.stringify(data)
+  })
+ .then(response => response.json())
+ .then(data => console.log(data))
+ .catch(error => console.error(error));
+}
+</script>
+</body>
+</html>
